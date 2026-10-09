@@ -143,7 +143,17 @@ print("Sommalia has no data, therefore the entire Africa part is NA. Europe has 
 
 ```{r Ex4, message = FALSE}
 # Write your code here to answer exercise 4
+plastic_data_all <- plastic_data_all %>%
+  rename(pop = population)
+
+plastic_data_all <- plastic_data_all %>%
+  str_replace_all("Latin America and The Caribbean", "LAC")
+
+#plastic_data_all %>%
+ ## group_by(region) %>%
+ # summarise(avg_waste = mean(waste_p)) %>%
+  #arrange(desc(avg_waste))
 
 
-
+#print(plastic_data_all)
 ```
