@@ -10,6 +10,7 @@ output: html_document
 ```{r load-packages, message = FALSE, warning=FALSE}
 library(tidyverse)
 library(readxl)
+library(dplyr)
 ```
 
 
@@ -97,8 +98,23 @@ print("Africa has most coastal countries.")
 
 ```{r Ex2, message = FALSE}
 # Write your code here to answer exercise 2
+#plastic_data_all %>% mutate(total_mismanage_plastic = population * mismanaged_plastic)
 
+plastic_data_all <- plastic_data_all %>%
+  mutate(total_mismanage_plastic = population * mismanaged_plastic)
 
+#names(plastic_data_all)
+plastic_data_all %>%
+  group_by(region) %>%
+  summarise(mean_total = mean(total_mismanage_plastic)) 
+  #count(total_mismange_plastic, sort = TRUE)
+
+plastic_data_all %>% 
+  group_by(region) %>%
+  summarise(total = sum(total_mismanage_plastic)) %>%
+  arrange(desc(total))
+#print(plastic_data_new)
+print("Asia has the highest total, Oceania has the least.")
 
 ```
 
