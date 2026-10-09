@@ -123,6 +123,16 @@ print("Asia has the highest total, Oceania has the least.")
 
 ```{r Ex3, message = FALSE}
 # Write your code here to answer exercise 3
+plastic_data_all <- plastic_data_all %>%
+  mutate(pct_mismanaged_plastic_ocean = mismanaged_plastic_ocean / mismanaged_plastic * 100)
+plastic_data_all %>%
+  group_by(region) %>%
+  #filter(code == "SOM") %>%
+  summarise(median_pct = median(pct_mismanaged_plastic_ocean)) %>%
+  drop_na() %>%
+  arrange(desc(median_pct))
+  #count(total_mismange_plastic, sort = TRUE)
+print("Sommalia has no data, therefore the entire Africa part is NA. Europe has the lowest median.")
 
 
 
